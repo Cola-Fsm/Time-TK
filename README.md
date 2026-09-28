@@ -24,11 +24,6 @@ Most existing forecasting methods represent time series using mixed embedding, i
 </div>
 
 
-<p align="center">
-  <b>Figure 1.</b> Illustration of different time series embedding strategies. Time-TK introduces Multi-Offset Embedding to capture temporal dependencies across different offsets.
-</p>
-
-
 Based on MOTE, Time-TK further combines **Kolmogorov-Arnold Networks (KANs)** and efficient temporal interaction to model complex temporal dynamics.
 
 ---
@@ -41,10 +36,6 @@ The overall architecture of Time-TK is shown below.
   <img src="./img/model.png" width="95%">
 </div>
 
-
-<p align="center">
-  <b>Figure 2.</b> Overall architecture of Time-TK. MOTE performs Multi-Offset Token Embedding, MI-KAN learns representations of the offset sub-sequences, and MOTI performs temporal interaction and global information integration.
-</p>
 
 ---
 
@@ -179,7 +170,7 @@ If you have any questions regarding the paper or code, please submit an issue in
 
 We appreciate the following resources a lot for their valuable code and datasets:
 
+- TFB ([https://github.com/decisionintelligence/TFB](https://github.com/decisionintelligence/TFB))
 - Time-Series-Library ([https://github.com/thuml/Time-Series-Library](https://github.com/thuml/Time-Series-Library))
 - iTransformer ([https://github.com/thuml/iTransformer](https://github.com/thuml/iTransformer))
 - BasicTS ([https://github.com/GestaltCogTeam/BasicTS](https://github.com/GestaltCogTeam/BasicTS))
-- TFB ([https://github.com/decisionintelligence/TFB](https://github.com/decisionintelligence/TFB))
