@@ -7,7 +7,7 @@
 
 **The ACM Web Conference 2026 (WWW '26)**
 
-[Paper]([https://doi.org/10.1145/3774904.3792618](https://dl.acm.org/doi/abs/10.1145/3774904.3792618)) | [Code](https://github.com/Cola-Fsm/Time-TK)
+[Paper](https://dl.acm.org/doi/abs/10.1145/3774904.3792618) | [Code](https://github.com/Cola-Fsm/Time-TK)
 
 </div>
 
