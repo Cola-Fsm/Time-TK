@@ -15,66 +15,36 @@
 
 ## Introduction
 
-Time-TK is a lightweight time series forecasting framework designed to better capture fine-grained temporal dependencies across different time offsets.
+**Time-TK** is a lightweight time series forecasting framework designed to better capture fine-grained temporal dependencies across different time offsets.
 
-Most existing forecasting methods embed individual time steps, temporal patches, or entire sequences as tokens. These strategies may overlook **multi-offset temporal correlations**, especially when modeling long and non-stationary sequences. To address this issue, Time-TK introduces a new multi-offset modeling perspective and combines efficient temporal interaction with Kolmogorov-Arnold Networks (KANs).
+Most existing forecasting methods represent time series using mixed embedding, inverted embedding, or patch embedding. Although effective, these strategies may overlook important dependencies distributed across different temporal offsets. To address this issue, we introduce **Multi-Offset Token Embedding (MOTE)**, which explicitly constructs multiple offset sub-sequences and preserves temporal information from different positions.
 
-The framework contains three main components:
+<div align="center">
+  <img src="./img/intr.png" width="90%">
+</div>
 
-- **Multi-Offset Token Embedding (MOTE):** constructs multiple offset sub-sequences from the original input to preserve temporal patterns at different offsets.
-- **Multi-Offset Interactive KAN (MI-KAN):** uses RBF-based KAN layers to learn expressive representations for different offset sub-sequences.
-- **Multi-Offset Temporal Interaction (MOTI):** models dependencies within offset sub-sequences and performs global interaction with the original sequence representation.
 
-Extensive experiments on real-world time series benchmarks demonstrate the effectiveness and efficiency of Time-TK for both long-term and short-term forecasting.
+<p align="center">
+  <b>Figure 1.</b> Illustration of different time series embedding strategies. Time-TK introduces Multi-Offset Embedding to capture temporal dependencies across different offsets.
+</p>
+
+
+Based on MOTE, Time-TK further combines **Kolmogorov-Arnold Networks (KANs)** and efficient temporal interaction to model complex temporal dynamics.
 
 ---
 
-## Framework
+## Model Architecture
 
-The overall workflow of Time-TK is:
+The overall architecture of Time-TK is shown below.
 
-```text
-Historical Time Series
-        │
-        ▼
-Instance Normalization
-        │
-        ▼
-Multi-Offset Token Embedding (MOTE)
-        │
-        ▼
-Multi-Offset Interactive KAN (MI-KAN)
-        │
-        ▼
-Multi-Offset Temporal Interaction (MOTI)
-        │
-        ▼
-Global Interaction
-        │
-        ▼
-Prediction Head
-        │
-        ▼
-Future Time Series
-```
+<div align="center">
+  <img src="./img/model.png" width="95%">
+</div>
 
-### Multi-Offset Token Embedding
 
-Given a historical sequence, MOTE divides it into multiple sub-sequences with different temporal offsets. Instead of representing the sequence using only continuous neighboring points, the model explicitly preserves information from different offset positions.
-
-This design helps Time-TK capture temporal patterns at different granularities and improves the utilization of long historical contexts.
-
-### Multi-Offset Interactive KAN
-
-After multi-offset embedding, MI-KAN learns dedicated representations for each offset sub-sequence.
-
-Time-TK adopts an efficient **RBF-based FastKAN** implementation. Compared with conventional MLP mappings, the KAN-based module provides flexible nonlinear modeling for temporal patterns while keeping the architecture lightweight.
-
-### Multi-Offset Temporal Interaction
-
-MOTI first performs self-attention within each offset representation and then introduces a global interaction mechanism between the multi-offset representation and the original sequence representation.
-
-This enables Time-TK to integrate local offset-specific information with the global temporal context.
+<p align="center">
+  <b>Figure 2.</b> Overall architecture of Time-TK. MOTE performs Multi-Offset Token Embedding, MI-KAN learns representations of the offset sub-sequences, and MOTI performs temporal interaction and global information integration.
+</p>
 
 ---
 
@@ -85,6 +55,9 @@ Time-TK/
 ├── data_provider/          # Data loading and preprocessing
 ├── exp/                    # Experiment pipeline
 ├── generated_scripts/      # Experiment scripts
+├── img/
+│   ├── intr.png            # Illustration of embedding strategies
+│   └── model.png           # Overall architecture of Time-TK
 ├── layers/                 # Basic network layers and FastKAN
 ├── models/                 # Time-TK and baseline models
 ├── utils/                  # Utility functions
@@ -106,7 +79,7 @@ The main dependencies are:
 - Matplotlib
 - Scikit-learn
 
-Install the required packages with:
+Clone this repository and install the required packages:
 
 ```bash
 git clone https://github.com/Cola-Fsm/Time-TK.git
@@ -119,7 +92,7 @@ pip install -r requirements.txt
 
 ## Datasets
 
-Time-TK is evaluated on both long-term and short-term forecasting benchmarks.
+Time-TK is evaluated on long-term forecasting, short-term forecasting, and web transaction forecasting benchmarks.
 
 | Task                        | Datasets                                                     |
 | --------------------------- | ------------------------------------------------------------ |
@@ -161,13 +134,13 @@ Ready-to-use experiment configurations are provided in:
 generated_scripts/
 ```
 
-You can run the corresponding shell script for a dataset and prediction horizon, for example:
+Run the corresponding script for a dataset and prediction horizon:
 
 ```bash
 bash generated_scripts/<script_name>.sh
 ```
 
-Alternatively, experiments can be launched directly through:
+Alternatively, experiments can be launched directly using:
 
 ```bash
 python -u run.py [arguments]
@@ -175,21 +148,7 @@ python -u run.py [arguments]
 
 Please refer to `run.py` and the scripts under `generated_scripts/` for the complete argument settings.
 
----
 
-## Main Results
-
-Time-TK achieves strong forecasting performance across long-term and short-term benchmarks.
-
-The experiments show that:
-
-- MOTE improves the utilization of historical information.
-- MI-KAN provides effective nonlinear temporal representation.
-- MOTI improves interaction across different temporal offsets.
-- MOTE can also be integrated into other forecasting architectures such as iTransformer, PatchTST, and TimesNet.
-- Time-TK maintains competitive memory efficiency as the input sequence length increases.
-
-Please refer to the paper for the complete forecasting results, ablation studies, statistical significance tests, and efficiency analysis.
 
 ---
 
@@ -212,7 +171,7 @@ If you find this repository useful, please cite our paper:
 
 ## Contact
 
-For questions about the paper or code, please open an issue in this repository.
+If you have any questions regarding the paper or code, please submit an issue in this repository; you are also welcome to contact me via email for discussion and learning.
 
 ---
 
