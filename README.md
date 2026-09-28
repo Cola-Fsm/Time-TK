@@ -9,7 +9,7 @@
 
 </div>
 
----
+
 
 ## Introduction
 
@@ -24,7 +24,7 @@ Most existing forecasting methods represent time series using mixed embedding, i
 
 Based on MOTE, Time-TK further combines **Kolmogorov-Arnold Networks (KANs)** and efficient temporal interaction to model complex temporal dynamics.
 
----
+
 
 ## Model Architecture
 
@@ -35,7 +35,7 @@ The overall architecture of Time-TK is shown below.
 </div>
 
 
----
+
 
 ## Repository Structure
 
@@ -55,7 +55,7 @@ Time-TK/
 └── README.md
 ```
 
----
+
 
 ## Requirements
 
@@ -77,7 +77,7 @@ cd Time-TK
 pip install -r requirements.txt
 ```
 
----
+
 
 ## Datasets
 
@@ -113,7 +113,7 @@ The public datasets can be obtained from the following sources:
 
 Please organize the downloaded datasets according to the paths specified in the experiment scripts.
 
----
+
 
 ## Training and Evaluation
 
@@ -139,7 +139,7 @@ Please refer to `run.py` and the scripts under `generated_scripts/` for the comp
 
 
 
----
+
 
 ## Citation
 
@@ -156,13 +156,13 @@ If you find this repository useful, please cite our paper:
 }
 ```
 
----
+
 
 ## Contact
 
 If you have any questions regarding the paper or code, please submit an issue in this repository; you are also welcome to contact me via email for discussion and learning.
 
----
+
 
 ## Acknowledgements
 
